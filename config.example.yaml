@@ -1,0 +1,48 @@
+# Skopíruj tento súbor ako config.yaml a uprav
+
+imap:
+  host: imap.gmail.com
+  port: 993
+  username: tvoj.email@gmail.com
+  password: "tvoje-app-password"  # Pre Gmail použi App Password
+  ssl: true
+
+# Zložka, z ktorej sa berú maily (zvyčajne INBOX)
+source_folder: INBOX
+
+# Pravidlá – prvé zodpovedajúce vyhrá
+rules:
+  - name: "Dôležité od šéfa"
+    folder: "INBOX/Dolezite"
+    conditions:
+      from:
+        - "sef@firma.sk"
+        - "boss@company.com"
+      subject_contains:
+        - "urgent"
+        - "asap"
+
+  - name: "Newsletters"
+    folder: "INBOX/Newsletters"
+    conditions:
+      from:
+        - "newsletter@"
+        - "noreply@"
+        - "no-reply@"
+
+  - name: "Faktúry"
+    folder: "INBOX/Faktury"
+    conditions:
+      subject_contains:
+        - "faktúra"
+        - "invoice"
+        - "účet"
+
+  - name: "Sociálne siete"
+    folder: "INBOX/Social"
+    conditions:
+      from:
+        - "facebook.com"
+        - "twitter.com"
+        - "linkedin.com"
+        - "instagram.com"
